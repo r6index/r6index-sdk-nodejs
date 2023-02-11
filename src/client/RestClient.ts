@@ -7,8 +7,8 @@ import {
 	DEFAULT_USER_AGENT,
 } from "../consts";
 
+import Axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
 import { TypedEmitter } from "tiny-typed-emitter";
-import Axios, { AxiosInstance } from "axios";
 
 export class RestClient extends TypedEmitter<RestClient.Events> {
 	/**
@@ -61,6 +61,104 @@ export class RestClient extends TypedEmitter<RestClient.Events> {
 				"User-Agent": this.userAgent,
 			},
 		});
+	}
+
+	/**
+	 * Send a GET request
+	 * @param route The route to hit
+	 * @param config The request config
+	 *
+	 * @returns The response data
+	 */
+	get<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+		return this.request<D>({ ...config, method: "GET", url: route });
+	}
+
+	/**
+	 * Send a POST request
+	 * @param route The route to hit
+	 * @param config The request config
+	 *
+	 * @returns The response data
+	 */
+	post<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+		return this.request<D>({ ...config, method: "POST", url: route });
+	}
+
+	/**
+	 * Send a PUT request
+	 * @param route The route to hit
+	 * @param config The request config
+	 *
+	 * @returns The response data
+	 */
+	put<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+		return this.request<D>({ ...config, method: "PUT", url: route });
+	}
+
+	/**
+	 * Send a PATCH request
+	 * @param route The route to hit
+	 * @param config The request config
+	 *
+	 * @returns The response data
+	 */
+	patch<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+		return this.request<D>({ ...config, method: "PATCH", url: route });
+	}
+
+	/**
+	 * Send a DELETE request
+	 * @param route The route to hit
+	 * @param config The request config
+	 *
+	 * @returns The response data
+	 */
+	delete<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+		return this.request<D>({ ...config, method: "DELETE", url: route });
+	}
+
+	/**
+	 * Send a request, handle errors, ratelimits and retrying
+	 * @param config The request config
+	 * @param retries The number of retries
+	 *
+	 * @returns The response data
+	 */
+	private async request<D>(config: AxiosRequestConfig, retries = 0): Promise<D> {
+		try {
+			const result = await this.axios<D>(config);
+			return result.data;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				const status = error.response?.status ?? 0;
+
+				if (this.shouldRetry(status, retries)) {
+					return this.request(config, ++retries);
+				}
+
+				// TODO: handle ratelimits
+
+				// TODO: custom error class
+				throw new Error("Request failed", {
+					cause: error,
+				});
+			}
+
+			throw error;
+		}
+	}
+
+	/**
+	 * Check whether a request should be retried
+	 * @param status The error status
+	 * @param retries The number of retry attempts
+	 *
+	 * @returns Whether a request should be retried
+	 */
+	private shouldRetry(status: number, retries: number): boolean {
+		if (status < 500 || status > 599) return false;
+		return retries < this.retries;
 	}
 }
 
@@ -135,5 +233,10 @@ export namespace RestClient {
 		 * The time in seconds the ratelimit resets
 		 */
 		resetAfter: number;
+
+		/**
+		 * The bucket hash that's ratelimited, null for global
+		 */
+		bucket: string | null;
 	}
 }
