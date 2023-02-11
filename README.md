@@ -2,11 +2,11 @@
 <!-- <img src="" align="center" width="80%" alt="banner"> -->
 <br>
 <br>
-<img src="https://img.shields.io/github/package-json/v/r6index/sdk" align="center" alt="">
+<img src="https://img.shields.io/github/package-json/v/R6IndexAPI/r6index-sdk-nodejs" align="center" alt="">
 <img src="https://img.shields.io/npm/dm/@r6indexapi/sdk" align="center" alt="">
-<img src="https://img.shields.io/github/license/R6IndexAPI/sdk" align="center" alt="">
-<img src="https://img.shields.io/github/issues/R6IndexAPI/sdk" align="center" alt="">
-<img src="https://img.shields.io/github/issues-pr/R6IndexAPI/sdk" align="center" alt="">
+<img src="https://img.shields.io/github/license/R6IndexAPI/r6index-sdk-nodejs" align="center" alt="">
+<img src="https://img.shields.io/github/issues/R6IndexAPI/r6index-sdk-nodejs" align="center" alt="">
+<img src="https://img.shields.io/github/issues-pr/R6IndexAPI/r6index-sdk-nodejs" align="center" alt="">
 <br>
 <br>
 
@@ -24,6 +24,7 @@ store any data; we do it for you!
 -   Fetch seasonal player stats
 -   Query for platform-connected profiles
 -   Access a player's match history, including the datacenter and gamemode
+-   Retrieve a player's ban history
 -   Lifetime stats
 
 ### Install
