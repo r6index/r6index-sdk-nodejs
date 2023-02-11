@@ -19,6 +19,16 @@
 		"dist",
 		"!dist/tsconfig.tsbuildinfo"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"keywords": [
+		"api",
+		"sdk",
+		"siege",
+		"r6",
+		"node"
+	],
 	"devDependencies": {
 		"@types/node": "^18.13.0",
 		"@typescript-eslint/eslint-plugin": "^5.51.0",
