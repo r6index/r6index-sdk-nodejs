@@ -1,12 +1,12 @@
 export namespace Entity {
-	export interface ExtendedProfile {
-		profile: Entity.Profile;
+	export interface Profile {
+		profile: Entity.MinimalProfile;
 		battlepass: Entity.Battlepass;
 		game_bans: Entity.GameBan[];
 		current_season_records: Record<Entity.Playlist, Entity.SeasonRecord>;
 	}
 
-	export interface Profile {
+	export interface MinimalProfile {
 		profile_id: string;
 		user_id: string;
 		username: string;
@@ -81,7 +81,7 @@ export namespace Entity {
 }
 
 export namespace Rest {
-	export type GetProfilesResult = Entity.ExtendedProfile;
+	export type GetProfilesResult = Entity.Profile;
 
-	export type GetProfilesConnectedProfilesResult = Entity.ExtendedProfile[];
+	export type GetProfilesConnectedProfilesResult = Entity.Profile[];
 }

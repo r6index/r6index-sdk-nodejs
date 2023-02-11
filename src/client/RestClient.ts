@@ -70,7 +70,7 @@ export class RestClient extends TypedEmitter<RestClient.Events> {
 	 *
 	 * @returns The response data
 	 */
-	get<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+	get<D>(route: string, config?: AxiosRequestConfig): Promise<D> {
 		return this.request<D>({ ...config, method: "GET", url: route });
 	}
 
@@ -81,7 +81,7 @@ export class RestClient extends TypedEmitter<RestClient.Events> {
 	 *
 	 * @returns The response data
 	 */
-	post<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+	post<D>(route: string, config?: AxiosRequestConfig): Promise<D> {
 		return this.request<D>({ ...config, method: "POST", url: route });
 	}
 
@@ -92,7 +92,7 @@ export class RestClient extends TypedEmitter<RestClient.Events> {
 	 *
 	 * @returns The response data
 	 */
-	put<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+	put<D>(route: string, config?: AxiosRequestConfig): Promise<D> {
 		return this.request<D>({ ...config, method: "PUT", url: route });
 	}
 
@@ -103,7 +103,7 @@ export class RestClient extends TypedEmitter<RestClient.Events> {
 	 *
 	 * @returns The response data
 	 */
-	patch<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+	patch<D>(route: string, config?: AxiosRequestConfig): Promise<D> {
 		return this.request<D>({ ...config, method: "PATCH", url: route });
 	}
 
@@ -114,7 +114,7 @@ export class RestClient extends TypedEmitter<RestClient.Events> {
 	 *
 	 * @returns The response data
 	 */
-	delete<D>(route: string, config: AxiosRequestConfig): Promise<D> {
+	delete<D>(route: string, config?: AxiosRequestConfig): Promise<D> {
 		return this.request<D>({ ...config, method: "DELETE", url: route });
 	}
 
