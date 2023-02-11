@@ -7,9 +7,10 @@ import {
 	DEFAULT_USER_AGENT,
 } from "../consts";
 
+import { TypedEmitter } from "tiny-typed-emitter";
 import Axios, { AxiosInstance } from "axios";
 
-export class RestClient {
+export class RestClient extends TypedEmitter<RestClient.Events> {
 	/**
 	 * The url for the API
 	 */
@@ -44,6 +45,8 @@ export class RestClient {
 	 * @param options The rest client options
 	 */
 	constructor(key: string, options: RestClient.Options = {}) {
+		super();
+
 		this.url = options.url ?? DEFAULT_API_URL;
 		this.version = options.version ?? DEFAULT_API_VERSION;
 		this.userAgent = options.userAgent ?? DEFAULT_USER_AGENT;
@@ -95,5 +98,42 @@ export namespace RestClient {
 		 * @default 10_000
 		 */
 		timeout?: number;
+	}
+
+	export interface Events {
+		/**
+		 * Emitted when debug mode is enabled
+		 * @param message The debug message
+		 */
+		debug(message: string): void;
+
+		/**
+		 * Emitted on rest errors
+		 * @param error The error
+		 */
+		error(error: Error): void;
+
+		/**
+		 * Emitted on API ratelimit
+		 * @param details The ratelimit details
+		 */
+		ratelimited(details: RatelimitDetails): void;
+	}
+
+	export interface RatelimitDetails {
+		/**
+		 * The endpoint that's ratelimited
+		 */
+		endpoint: string;
+
+		/**
+		 * The date the ratelimit resets
+		 */
+		resetAt: Date;
+
+		/**
+		 * The time in seconds the ratelimit resets
+		 */
+		resetAfter: number;
 	}
 }

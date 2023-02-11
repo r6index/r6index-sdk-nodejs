@@ -1,7 +1,6 @@
 import { RestClient } from "./RestClient";
-import EventEmitter from "events";
 
-export class Client extends EventEmitter {
+export class Client {
 	/**
 	 * The client for performing requests
 	 */
@@ -11,8 +10,6 @@ export class Client extends EventEmitter {
 	 * @param options The client options
 	 */
 	constructor(options: Client.Options) {
-		super();
-
 		this.rest = new RestClient(options.key, options.rest);
 	}
 }
