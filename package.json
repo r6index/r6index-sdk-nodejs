@@ -1,0 +1,32 @@
+{
+	"name": "@r6index/sdk",
+	"version": "0.0.1-alpha",
+	"description": "NodeJS kit for working with our Rainbow Six Siege API.",
+	"main": "dist/index.js",
+	"typings": "dist/index.d.ts",
+	"private": false,
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "npx tsc -b .",
+		"format": "npx prettier --write \"src/**/*.ts\"",
+		"lint": "npx eslint \"src/**/*.ts\" --fix"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:R6IndexAPI/r6index-sdk-nodejs.git"
+	},
+	"files": [
+		"dist",
+		"!dist/tsconfig.tsbuildinfo"
+	],
+	"devDependencies": {
+		"@types/node": "^18.13.0",
+		"@typescript-eslint/eslint-plugin": "^5.51.0",
+		"@typescript-eslint/parser": "^5.51.0",
+		"eslint": "^8.34.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"prettier": "^2.8.4",
+		"typescript": "^4.9.5"
+	}
+}
