@@ -1,6 +1,6 @@
 {
 	"name": "@r6index/sdk",
-	"version": "0.0.1-alpha",
+	"version": "0.1.0",
 	"description": "NodeJS kit for working with our Rainbow Six Siege API.",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
