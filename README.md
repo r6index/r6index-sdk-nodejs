@@ -43,7 +43,7 @@ store any data; we do it for you!
 #### Client
 
 ```ts
-import { Client } from "./client";
+import { Client } from "@r6index/sdk";
 
 const client = new Client({
 	key: "your api key",
