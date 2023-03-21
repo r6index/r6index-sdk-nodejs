@@ -14,9 +14,7 @@
 
 </div>
 
-> ⚠️ Work in progress
-
-### About
+## About
 
 R6Index is a reliable API service for Rainbow Six Siege. We make it easy to fetch stats - you don't need to
 store any data; we do it for you!
@@ -27,7 +25,7 @@ store any data; we do it for you!
 -   Retrieve a player's ban history
 -   Lifetime stats
 
-### Install
+## Install
 
 ```sh
 # NPM
@@ -40,6 +38,36 @@ store any data; we do it for you!
 > pnpm add @r6index/sdk
 ```
 
-### Usage
+## Usage
 
-TODO
+#### Client
+
+```ts
+import { Client } from "./client";
+
+const client = new Client({
+	key: "your api key",
+});
+```
+
+#### Methods
+
+```ts
+// Get extended profile by id
+await client.getProfileById("f2f38d39-4a5d-4425-bdc1-f74c9a0c9da7");
+
+// Get extended profile by username
+await client.getProfileByUsername("head", "uplay");
+
+// Get connected extended profiles by user id
+await client.getConnectedProfiles("f2f38d39-4a5d-4425-bdc1-f74c9a0c9da7");
+
+// Get battlepass by profile id
+await client.getBattlepassByProfileId("f2f38d39-4a5d-4425-bdc1-f74c9a0c9da7");
+
+// Get recent bans
+await client.getBans();
+
+// Get game status
+await client.getGameStatus();
+```
