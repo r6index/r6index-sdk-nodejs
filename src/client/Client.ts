@@ -21,7 +21,7 @@ export class Client {
 	 *
 	 * @returns The profile
 	 */
-	getProfileById(profileId: string): Promise<Entity.Profile> {
+	getProfileById(profileId: string): Promise<Entity.ExtendedProfile> {
 		return this.rest.get<Rest.GetProfilesResult>(ROUTES.PROFILES_PROFILE_ID(profileId));
 	}
 
@@ -32,7 +32,7 @@ export class Client {
 	 *
 	 * @returns The profile
 	 */
-	getProfileByUsername(username: string, platform: Entity.Platform): Promise<Entity.Profile> {
+	getProfileByUsername(username: string, platform: Entity.Platform): Promise<Entity.ExtendedProfile> {
 		return this.rest.get<Rest.GetProfilesResult>(ROUTES.PROFILES, {
 			params: {
 				username,
@@ -47,7 +47,7 @@ export class Client {
 	 *
 	 * @returns The connected profiles
 	 */
-	getConnectedProfiles(userId: string): Promise<Entity.Profile[]> {
+	getConnectedProfiles(userId: string): Promise<Entity.ExtendedProfile[]> {
 		return this.rest.get<Rest.GetProfilesConnectedProfilesResult>(
 			ROUTES.PROFILES_CONNECTED_USER_ID(userId),
 		);

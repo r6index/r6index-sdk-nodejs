@@ -1,17 +1,16 @@
 export namespace Entity {
-	export interface Profile {
-		profile: Entity.MinimalProfile;
-		battlepass: Entity.Battlepass;
-		game_bans: Entity.GameBan[];
-		current_season_records: Record<Entity.Playlist, Entity.SeasonRecord>;
+	export interface ExtendedProfile {
+		profile: Profile;
+		general: GeneralStats;
+		game_bans: GameBan[];
+		current_season_records: Record<Playlist, SeasonRecord>;
 	}
 
-	export interface MinimalProfile {
+	export interface Profile {
 		profile_id: string;
 		user_id: string;
 		username: string;
 		platform: string;
-		level: number;
 		visits: number;
 		updated_at: string;
 		avatar_url: string;
@@ -22,6 +21,11 @@ export namespace Entity {
 	export interface UsernameAlias {
 		id: string;
 		username: string;
+	}
+
+	export interface GeneralStats {
+		level: number;
+		headshot_rate: number;
 	}
 
 	export interface Battlepass {
@@ -73,15 +77,11 @@ export namespace Entity {
 		EVENT = "event",
 	}
 
-	export enum Platform {
-		PC = "uplay",
-		XBOX = "xbl",
-		PLAYSTATION = "psn",
-	}
+	export type Platform = "uplay" | "xbl" | "psn";
 }
 
 export namespace Rest {
-	export type GetProfilesResult = Entity.Profile;
+	export type GetProfilesResult = Entity.ExtendedProfile;
 
-	export type GetProfilesConnectedProfilesResult = Entity.Profile[];
+	export type GetProfilesConnectedProfilesResult = Entity.ExtendedProfile[];
 }
