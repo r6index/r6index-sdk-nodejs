@@ -3,7 +3,7 @@
 <br>
 <br>
 <img src="https://img.shields.io/github/package-json/v/R6IndexAPI/r6index-sdk-nodejs" align="center" alt="">
-<img src="https://img.shields.io/npm/dm/@r6indexapi/sdk" align="center" alt="">
+<img src="https://img.shields.io/npm/dm/@r6index/sdk" align="center" alt="">
 <img src="https://img.shields.io/github/license/R6IndexAPI/r6index-sdk-nodejs" align="center" alt="">
 <img src="https://img.shields.io/github/issues/R6IndexAPI/r6index-sdk-nodejs" align="center" alt="">
 <img src="https://img.shields.io/github/issues-pr/R6IndexAPI/r6index-sdk-nodejs" align="center" alt="">
