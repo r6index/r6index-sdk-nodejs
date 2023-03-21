@@ -52,6 +52,16 @@ export class Client {
 			ROUTES.PROFILES_CONNECTED_USER_ID(userId),
 		);
 	}
+
+	/**
+	 * Get a battlepass by profile id
+	 * @param profileId The profile id of the profile
+	 *
+	 * @returns The battepass
+	 */
+	getBattlepassByProfileId(profileId: string): Promise<Entity.Battlepass> {
+		return this.rest.get<Rest.GetProfileBattlepassResult>(ROUTES.PROFILES_BATTLEPASS(profileId));
+	}
 }
 
 export namespace Client {

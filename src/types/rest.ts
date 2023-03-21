@@ -82,6 +82,6 @@ export namespace Entity {
 
 export namespace Rest {
 	export type GetProfilesResult = Entity.ExtendedProfile;
-
 	export type GetProfilesConnectedProfilesResult = Entity.ExtendedProfile[];
+	export type GetProfileBattlepassResult = Entity.Battlepass;
 }
