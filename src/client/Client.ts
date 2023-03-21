@@ -78,6 +78,15 @@ export class Client {
 			},
 		});
 	}
+
+	/**
+	 * Get the game status
+	 *
+	 * @returns The game status
+	 */
+	getGameStatus(): Promise<Entity.GameStatus> {
+		return this.rest.get<Rest.GetGameStatusResult>(ROUTES.GAME_STATUS);
+	}
 }
 
 export namespace Client {

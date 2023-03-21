@@ -14,4 +14,5 @@ export const ROUTES = {
 	PROFILES_CONNECTED_USER_ID: (userId: string) => `/profiles/${userId}/connected-profiles`,
 	PROFILES_BATTLEPASS: (profileId: string) => `/profiles/${profileId}/battlepass`,
 	BANS: "/bans",
+	GAME_STATUS: "/game-status",
 };

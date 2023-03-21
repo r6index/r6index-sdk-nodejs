@@ -79,6 +79,21 @@ export namespace Entity {
 		name: string;
 	}
 
+	export interface GameStatusPlatform {
+		name: string;
+		status: PlatformStatus;
+		impacted_features: string[];
+	}
+
+	export type GameStatus = Record<"pc" | "xbox" | "playstation", GameStatusPlatform>;
+
+	export enum PlatformStatus {
+		ONLINE = "online",
+		DEGRADED = "degraded",
+		INTERRUPTED = "interrupted",
+		MAINTENANCE = "maintenance",
+	}
+
 	export enum Playlist {
 		RANKED = "ranked",
 		QUICK_MATCH = "casual",
@@ -94,4 +109,5 @@ export namespace Rest {
 	export type GetProfilesConnectedProfilesResult = Entity.ExtendedProfile[];
 	export type GetProfileBattlepassResult = Entity.Battlepass;
 	export type GetBansResult = Entity.Ban[];
+	export type GetGameStatusResult = Entity.GameStatus;
 }
