@@ -62,6 +62,22 @@ export class Client {
 	getBattlepassByProfileId(profileId: string): Promise<Entity.Battlepass> {
 		return this.rest.get<Rest.GetProfileBattlepassResult>(ROUTES.PROFILES_BATTLEPASS(profileId));
 	}
+
+	/**
+	 * Get recent bans
+	 * @param pagination The pagination options
+	 *
+	 * @returns The bans
+	 */
+	getBans(pagination: Client.PaginationOptions = {}): Promise<Entity.Ban[]> {
+		return this.rest.get<Rest.GetBansResult>(ROUTES.BANS, {
+			params: {
+				limit: pagination.limit ?? 20,
+				before: pagination.before?.toString(),
+				after: pagination.after?.toString(),
+			},
+		});
+	}
 }
 
 export namespace Client {
@@ -75,5 +91,11 @@ export namespace Client {
 		 * The rest client options
 		 */
 		rest?: RestClient.Options;
+	}
+
+	export interface PaginationOptions {
+		limit?: number;
+		before?: bigint | string;
+		after?: bigint | string;
 	}
 }

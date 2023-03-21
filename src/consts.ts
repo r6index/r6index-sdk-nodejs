@@ -13,4 +13,5 @@ export const ROUTES = {
 	PROFILES_PROFILE_ID: (profileId: string) => `/profiles/${profileId}`,
 	PROFILES_CONNECTED_USER_ID: (userId: string) => `/profiles/${userId}/connected-profiles`,
 	PROFILES_BATTLEPASS: (profileId: string) => `/profiles/${profileId}/battlepass`,
+	BANS: "/bans",
 };

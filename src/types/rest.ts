@@ -1,6 +1,6 @@
 export namespace Entity {
 	export interface ExtendedProfile {
-		profile: Profile;
+		profile: ProfileWithAliases;
 		general: GeneralStats;
 		game_bans: GameBan[];
 		current_season_records: Record<Playlist, SeasonRecord>;
@@ -15,6 +15,9 @@ export namespace Entity {
 		updated_at: string;
 		avatar_url: string;
 		small_avatar_url: string;
+	}
+
+	export interface ProfileWithAliases extends Profile {
 		username_history: UsernameAlias[];
 	}
 
@@ -38,6 +41,12 @@ export namespace Entity {
 	export interface GameBan {
 		id: string;
 		reason: string;
+	}
+
+	export interface Ban {
+		id: string;
+		reason: string;
+		profile: Profile;
 	}
 
 	export interface SeasonRecord {
@@ -84,4 +93,5 @@ export namespace Rest {
 	export type GetProfilesResult = Entity.ExtendedProfile;
 	export type GetProfilesConnectedProfilesResult = Entity.ExtendedProfile[];
 	export type GetProfileBattlepassResult = Entity.Battlepass;
+	export type GetBansResult = Entity.Ban[];
 }
